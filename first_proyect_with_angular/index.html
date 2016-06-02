@@ -1,0 +1,47 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/miangular.css">
+    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body ng-app="miApp">
+
+    <div ng-controller="miControlador">
+        <h1>{{ textoDinamico }}</h1>
+    </div>
+    <ul ng-controller="ControllerEnlaces">
+        <li ng-repeat="elemento in elementos | filter: { link:'El'} "><a  ng-class="$first ? 'red' : 'blue'" href="http://{{elemento.url}}">{{$index}} - {{elemento.link}}</a></li>
+    </ul>
+     <ul ng-controller="ControllerEnlaces">
+        <li ng-repeat="elemento in elementos | orderBy: 'url' "><a  ng-class="$first ? 'red' : 'blue'" href="http://{{elemento.url}}">{{$index}} - {{elemento.link}}</a></li>
+    </ul>
+    <ul ng-controller="ControllerEnlaces">
+        <li ng-repeat="elemento in elementos | orderBy: '-url' "><a  ng-click="posClick()" ng-class="$first ? 'red' : 'blue'"  href="http://{{elemento.url}}">{{$index}} - {{elemento.link}}</a></li>
+    </ul>
+
+    <div ng-controller="controllerClick" class="pulsar" ng-click="posClick()">Pulsa Aquí</div>
+
+    <section ng-view>
+        <p>{{ saludoInicial }}</p>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
+    <script src="js/vendor/angular.min.js"></script>
+    <script src="js/vendor/angular-route.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="modules/futbolApp.js"></script>
+    <script src="controllers/futbolController.js"></script>
+</body>
+</html>
